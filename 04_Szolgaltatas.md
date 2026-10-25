@@ -8,6 +8,12 @@ egyfelelősség elve, angolul Single Responsibility Principle.
 
 Vegyünk egy bevásárlólistát. A termékek listáját a szolgáltatásban tároljuk.
 
+Készítsünk egy _shopping_list_ nevű projektet.
+
+```bash
+ng new shopping_list
+```
+
 Szolgáltatás létrehozása:
 
 ```bash
