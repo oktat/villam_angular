@@ -17,7 +17,7 @@ ng new shopping_list
 Szolgáltatás létrehozása:
 
 ```bash
-ng generate service shared/shopping
+ng generate service services/shopping-service
 ```
 
 A TypeScript fájl:
@@ -78,4 +78,62 @@ Sablon:
 
 ## API hívások
 
+Az API szerver felülete, ami hozzáférést biztosít az adatbázishoz. A frontend az API
+hávásokon keresztül tudja kezelni az adatokat.
+
+Az adatokat aszinkron módon kezeljük. Elküldjük a kérést. Nem számítunk azonnal
+a válaszra, majd valamikor megjön. Olyan mint egy folyam, amin valamikor érkeznek
+az adatok. A folyam figyelését a Observable típus biztosítja az RxJS modulból.
+
+Egy helyettesítő szervert fogunk használni Backendnek:
+
+* [https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/)
+
+A JavaScript-ben elérhető a fetch() függvény az adatok elérésére. Az Angular
+fejlesztői azonban saját megoldást hoztak létre: HttpClient.
+
+Először konfigurálni kell az Angular projektet, hogy használhassuk.
+
+Nyissuk meg a src/app/app.config.ts fájlt. A tartalma ehhez hasonló:
+
+src/app/app.config.ts
+
+```typescript
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes)
+  ]
+};
+```
+
+Vegyük fel a provideHttpClient() a providers tömbbe:
+
+```typescript
+//...
+//Legyen importálva:
+import { provideHttpClient } from '@angular/common/http';
+//...
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
+    provideHttpClient()
+  ]
+```
+
+A HttpClient használatához egy szolgáltatást hozunk létre.
+Legyen a neve PostService. Hozzuk létre:
+
+```bash
+ng generate service services/post-service
+```
+
 ## Backend
+
+Használjunk saját backendet:
+
+* [https://github.com/oktatapi/shopping_list_api.git](https://github.com/oktatapi/shopping_list_api.git)
