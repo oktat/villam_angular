@@ -137,3 +137,4 @@ ng generate service services/post-service
 Használjunk saját backendet:
 
 * [https://github.com/oktatapi/shopping_list_api.git](https://github.com/oktatapi/shopping_list_api.git)
+* [https://github.com/oktatapi/shopping_list_sipere.git](https://github.com/oktatapi/shopping_list_sipere.git)
